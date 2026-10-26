@@ -10,7 +10,7 @@
   },
   "files": ["src", "generated"],
   "scripts": {
-    "generate": "bun scripts/generate.ts && biome format --write src/generated >/dev/null",
+    "generate": "bun scripts/generate.ts && biome check --write src/generated >/dev/null",
     "check": "bun scripts/check.ts",
     "test": "bun test && vendor/bin/pest",
     "lint": "biome check .",

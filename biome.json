@@ -1,6 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.6.3/schema.json",
-  "files": { "includes": ["**", "!vendor", "!generated", "!**/*.json"] },
+  "files": { "includes": ["**", "!vendor", "!generated", "!**/*.json", "!**/*.yml", "!**/*.yaml"] },
   "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 120 },
   "javascript": { "formatter": { "quoteStyle": "single", "semicolons": "asNeeded", "arrowParentheses": "asNeeded" } },
   "linter": {
