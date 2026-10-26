@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # tags are needed for the additive-change check
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - run: bun install --frozen-lockfile
+      - run: composer install --no-interaction --no-progress
+      - name: Lint
+        run: bun run lint
+      - name: Typecheck
+        run: bun run typecheck
+      - name: Generated code is up to date
+        run: |
+          bun run generate
+          git diff --exit-code -- src/generated generated php/src/Generated
+      - name: Contract checks (fixtures, naming, additive-only)
+        run: bun run check
+      - name: Tests (TS + PHP)
+        run: bun run test

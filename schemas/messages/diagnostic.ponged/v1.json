@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DiagnosticPonged",
+  "description": "Reply to diagnostic.ping.",
+  "x-kind": "event",
+  "type": "object",
+  "required": ["responder", "note", "attempts"],
+  "properties": {
+    "responder": { "type": "string" },
+    "note": { "type": "string" },
+    "attempts": { "description": "How many deliveries it took to succeed.", "type": "integer", "minimum": 1 }
+  }
+}

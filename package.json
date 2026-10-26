@@ -1,0 +1,29 @@
+{
+  "name": "@teledash/contracts",
+  "version": "0.1.0",
+  "description": "Teledash message envelope and command/event schemas, with generated TypeScript types and validators.",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./schemas/*": "./generated/schemas/*"
+  },
+  "files": ["src", "generated"],
+  "scripts": {
+    "generate": "bun scripts/generate.ts && biome format --write src/generated >/dev/null",
+    "check": "bun scripts/check.ts",
+    "test": "bun test && vendor/bin/pest",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2",
+    "@types/bun": "latest",
+    "json-schema-to-typescript": "^16",
+    "typescript": "^7"
+  }
+}

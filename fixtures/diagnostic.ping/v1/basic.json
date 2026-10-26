@@ -1,0 +1,11 @@
+{
+  "message_id": "01JB7Q2V9K3M4N5P6Q7R8S9T0V",
+  "type": "diagnostic.ping",
+  "version": 1,
+  "occurred_at": "2026-10-26T20:57:00Z",
+  "producer": "kit-test",
+  "correlation_id": "diag_01",
+  "causation_id": null,
+  "actor": { "type": "system", "id": "kit-test" },
+  "payload": { "target": "kit-test", "note": "hello" }
+}

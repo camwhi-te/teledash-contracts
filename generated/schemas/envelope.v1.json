@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://teledash.local/schemas/envelope.v1.json",
+  "title": "Envelope",
+  "description": "Wraps every command and event sent between Teledash services.",
+  "type": "object",
+  "required": [
+    "message_id",
+    "type",
+    "version",
+    "occurred_at",
+    "producer",
+    "correlation_id",
+    "causation_id",
+    "actor",
+    "payload"
+  ],
+  "properties": {
+    "message_id": {
+      "description": "ULID. Also the idempotency key: consumers ignore a message_id they have already processed.",
+      "type": "string",
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "type": {
+      "description": "Commands are <service>.<verb>; events are past tense, e.g. sim.activated.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "type": "string",
+      "enum": [
+        "core",
+        "order",
+        "billing",
+        "msisdn",
+        "sim",
+        "warehouse",
+        "activity-log",
+        "notification",
+        "network-sim",
+        "payment-sim",
+        "seed",
+        "kit-test"
+      ]
+    },
+    "correlation_id": {
+      "description": "The order or request this message belongs to.",
+      "type": "string",
+      "minLength": 1
+    },
+    "causation_id": {
+      "description": "message_id of the message that caused this one; null for the first message in a flow.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "agent",
+            "system",
+            "customer"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}
