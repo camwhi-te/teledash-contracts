@@ -38,12 +38,12 @@ final readonly class AccountAccessEndedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'grant_ref' => $this->grant_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'agent_ref' => $this->agent_ref,
             'reason' => $this->reason,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

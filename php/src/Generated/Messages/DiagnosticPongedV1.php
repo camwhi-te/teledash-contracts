@@ -36,11 +36,11 @@ final readonly class DiagnosticPongedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'responder' => $this->responder,
             'note' => $this->note,
             'attempts' => $this->attempts,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

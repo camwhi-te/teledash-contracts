@@ -34,10 +34,10 @@ final readonly class BillingCreditFailedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'approval_ref' => $this->approval_ref,
             'failure' => $this->failure,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

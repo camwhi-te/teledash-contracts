@@ -36,11 +36,11 @@ final readonly class AccountVerificationLockedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'customer_account_ref' => $this->customer_account_ref,
             'agent_ref' => $this->agent_ref,
             'locked_until' => $this->locked_until,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

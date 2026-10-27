@@ -45,15 +45,15 @@ final readonly class AccountAccessGrantedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'grant_ref' => $this->grant_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'agent_ref' => $this->agent_ref,
             'method' => $this->method,
             'restricted' => $this->restricted,
             'expires_at' => $this->expires_at,
-            'break_glass_reason' => $this->break_glass_reason,
-        ], fn ($v) => $v !== null);
+            ...($this->break_glass_reason === null ? [] : ['break_glass_reason' => $this->break_glass_reason]),
+        ];
     }
 
     public function type(): string

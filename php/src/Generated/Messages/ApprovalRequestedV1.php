@@ -46,16 +46,16 @@ final readonly class ApprovalRequestedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'approval_ref' => $this->approval_ref,
             'type' => $this->type,
             'customer_account_ref' => $this->customer_account_ref,
             'requested_by_ref' => $this->requested_by_ref,
             'status' => $this->status,
             'queue' => $this->queue,
-            'amount' => $this->amount,
-            'reason_code' => $this->reason_code,
-        ], fn ($v) => $v !== null);
+            ...($this->amount === null ? [] : ['amount' => $this->amount]),
+            ...($this->reason_code === null ? [] : ['reason_code' => $this->reason_code]),
+        ];
     }
 
     public function type(): string

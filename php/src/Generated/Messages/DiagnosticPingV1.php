@@ -37,11 +37,11 @@ final readonly class DiagnosticPingV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'target' => $this->target,
             'note' => $this->note,
-            'fail_times' => $this->fail_times,
-        ], fn ($v) => $v !== null);
+            ...($this->fail_times === null ? [] : ['fail_times' => $this->fail_times]),
+        ];
     }
 
     public function type(): string

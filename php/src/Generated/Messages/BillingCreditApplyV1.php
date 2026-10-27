@@ -43,14 +43,14 @@ final readonly class BillingCreditApplyV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'approval_ref' => $this->approval_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'amount' => $this->amount,
             'reason_code' => $this->reason_code,
             'description' => $this->description,
-            'billing_account_ref' => $this->billing_account_ref,
-        ], fn ($v) => $v !== null);
+            ...($this->billing_account_ref === null ? [] : ['billing_account_ref' => $this->billing_account_ref]),
+        ];
     }
 
     public function type(): string

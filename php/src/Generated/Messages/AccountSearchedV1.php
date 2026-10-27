@@ -38,12 +38,12 @@ final readonly class AccountSearchedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'agent_ref' => $this->agent_ref,
             'term_type' => $this->term_type,
             'matched' => $this->matched,
             'customer_account_ref' => $this->customer_account_ref,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

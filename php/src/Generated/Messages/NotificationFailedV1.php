@@ -38,12 +38,12 @@ final readonly class NotificationFailedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'notification_id' => $this->notification_id,
             'channel' => $this->channel,
             'to' => $this->to,
             'failure' => $this->failure,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

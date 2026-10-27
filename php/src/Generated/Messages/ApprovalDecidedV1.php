@@ -42,14 +42,14 @@ final readonly class ApprovalDecidedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'approval_ref' => $this->approval_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'decision' => $this->decision,
             'flagged' => $this->flagged,
-            'decided_by_ref' => $this->decided_by_ref,
-            'comment' => $this->comment,
-        ], fn ($v) => $v !== null);
+            ...($this->decided_by_ref === null ? [] : ['decided_by_ref' => $this->decided_by_ref]),
+            ...($this->comment === null ? [] : ['comment' => $this->comment]),
+        ];
     }
 
     public function type(): string

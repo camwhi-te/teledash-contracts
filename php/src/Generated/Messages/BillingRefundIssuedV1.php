@@ -40,13 +40,13 @@ final readonly class BillingRefundIssuedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'approval_ref' => $this->approval_ref,
             'billing_account_ref' => $this->billing_account_ref,
             'payment_ref' => $this->payment_ref,
             'amount' => $this->amount,
-            'refund_ref' => $this->refund_ref,
-        ], fn ($v) => $v !== null);
+            ...($this->refund_ref === null ? [] : ['refund_ref' => $this->refund_ref]),
+        ];
     }
 
     public function type(): string

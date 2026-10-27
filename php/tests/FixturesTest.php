@@ -39,3 +39,17 @@ it('rejects an unknown message type', function () {
         'causation_id' => null, 'actor' => ['type' => 'system', 'id' => 'core'], 'payload' => [],
     ]);
 })->throws(ContractException::class, 'unknown message');
+
+it('keeps required fields that are null, and drops optional ones that are', function () {
+    $dto = new \Teledash\Contracts\Generated\Messages\AccountSearchedV1(
+        agent_ref: '0193a3f0-6a1e-7c2b-9d4e-1f2a3b4c5d6e', term_type: 'email', matched: false, customer_account_ref: null,
+    );
+    expect($dto->toArray())->toHaveKey('customer_account_ref')->and($dto->toArray()['customer_account_ref'])->toBeNull();
+
+    $send = new \Teledash\Contracts\Generated\Messages\NotificationSendV1(
+        notification_id: '0193a3f0-6a1e-7c2b-9d4e-1f2a3b4c5d6e', channel: 'sms', to: '447700900123', template: 'otac', body: 'x',
+    );
+    expect($send->toArray())->not->toHaveKey('subject');
+
+    Envelope::fromArray(json_decode(Envelope::wrap($dto, 'core', 'c', ['type' => 'system', 'id' => 'core'])->toJson(), true));
+});

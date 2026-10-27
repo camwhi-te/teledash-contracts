@@ -46,15 +46,15 @@ final readonly class NotificationSendV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'notification_id' => $this->notification_id,
             'channel' => $this->channel,
             'to' => $this->to,
             'template' => $this->template,
             'body' => $this->body,
-            'subject' => $this->subject,
-            'customer_account_ref' => $this->customer_account_ref,
-        ], fn ($v) => $v !== null);
+            ...($this->subject === null ? [] : ['subject' => $this->subject]),
+            ...($this->customer_account_ref === null ? [] : ['customer_account_ref' => $this->customer_account_ref]),
+        ];
     }
 
     public function type(): string

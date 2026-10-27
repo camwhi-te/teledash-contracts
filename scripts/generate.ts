@@ -101,7 +101,13 @@ function phpClass(m: MessageSchema): string {
     return `${doc}        public ${decl} $${n}${nullable && !required.includes(n) ? ' = null' : ''},`
   })
   const from = names.map(n => `            ${n}: $data['${n}']${required.includes(n) ? '' : ' ?? null'},`)
-  const to = names.map(n => `            '${n}' => $this->${n},`)
+  const required_ = names.filter(n => required.includes(n))
+  const optional = names.filter(n => !required.includes(n))
+  // required fields are always present (null included); optional ones are left out when null
+  const to = [
+    ...required_.map(n => `            '${n}' => $this->${n},`),
+    ...optional.map(n => `            ...($this->${n} === null ? [] : ['${n}' => $this->${n}]),`),
+  ]
   return `<?php
 
 // ${BANNER}
@@ -134,9 +140,9 @@ ${from.join('\n')}
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
 ${to.join('\n')}
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

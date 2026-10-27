@@ -43,14 +43,14 @@ final readonly class VerificationFailedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'verification_ref' => $this->verification_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'agent_ref' => $this->agent_ref,
             'step' => $this->step,
             'attempts' => $this->attempts,
             'locked' => $this->locked,
-        ], fn ($v) => $v !== null);
+        ];
     }
 
     public function type(): string

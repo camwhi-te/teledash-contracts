@@ -44,15 +44,15 @@ final readonly class InteractionRecordedV1 implements Message
 
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'interaction_ref' => $this->interaction_ref,
             'customer_account_ref' => $this->customer_account_ref,
             'agent_ref' => $this->agent_ref,
             'reason_code' => $this->reason_code,
             'started_at' => $this->started_at,
             'ended_at' => $this->ended_at,
-            'verification_method' => $this->verification_method,
-        ], fn ($v) => $v !== null);
+            ...($this->verification_method === null ? [] : ['verification_method' => $this->verification_method]),
+        ];
     }
 
     public function type(): string
