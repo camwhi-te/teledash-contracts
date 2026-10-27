@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApprovalRequested",
+  "description": "A credit, refund, exchange or termination was requested.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "type",
+    "customer_account_ref",
+    "requested_by_ref",
+    "status",
+    "queue"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "credit",
+        "refund",
+        "exchange",
+        "termination"
+      ]
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "amount": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/money"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requested_by_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved"
+      ]
+    },
+    "queue": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "manager",
+        "admin"
+      ]
+    }
+  }
+}

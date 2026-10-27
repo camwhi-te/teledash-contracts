@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InteractionRecorded",
+  "description": "A call ended with a wrap-up reason.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "interaction_ref",
+    "customer_account_ref",
+    "agent_ref",
+    "reason_code",
+    "started_at",
+    "ended_at"
+  ],
+  "properties": {
+    "interaction_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "agent_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "started_at": {
+      "$ref": "../../defs.json#/$defs/datetime"
+    },
+    "ended_at": {
+      "$ref": "../../defs.json#/$defs/datetime"
+    },
+    "verification_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountAccessGranted",
+  "description": "An agent was given time-limited access to one account.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "grant_ref",
+    "customer_account_ref",
+    "agent_ref",
+    "method",
+    "restricted",
+    "expires_at"
+  ],
+  "properties": {
+    "grant_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "agent_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "otac_and_question",
+        "two_questions",
+        "break_glass"
+      ]
+    },
+    "restricted": {
+      "type": "boolean",
+      "description": "Weaker verification: payment-method changes and SIM swaps are blocked."
+    },
+    "expires_at": {
+      "$ref": "../../defs.json#/$defs/datetime"
+    },
+    "break_glass_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountSearched",
+  "description": "An agent searched for an account. The search term itself stays in the core.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "agent_ref",
+    "term_type",
+    "matched",
+    "customer_account_ref"
+  ],
+  "properties": {
+    "agent_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Core agent id of the member of staff."
+    },
+    "term_type": {
+      "type": "string",
+      "enum": [
+        "email",
+        "msisdn",
+        "account_number"
+      ]
+    },
+    "matched": {
+      "type": "boolean"
+    },
+    "customer_account_ref": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/account.searched/v1.json"
+}

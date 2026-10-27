@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingCreditApply",
+  "description": "Apply an approved goodwill credit.",
+  "x-kind": "command",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "customer_account_ref",
+    "amount",
+    "reason_code",
+    "description"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "billing_account_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Null: the customer's default billing account."
+    },
+    "amount": {
+      "$ref": "../../defs.json#/$defs/money"
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

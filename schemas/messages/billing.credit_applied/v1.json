@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingCreditApplied",
+  "description": "A credit was applied to a billing account.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "billing_account_ref",
+    "amount"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "billing_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "amount": {
+      "$ref": "../../defs.json#/$defs/money"
+    },
+    "charge_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

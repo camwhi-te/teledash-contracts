@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotificationSent",
+  "description": "A notification was delivered.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "notification_id",
+    "channel",
+    "to",
+    "delivered_at"
+  ],
+  "properties": {
+    "notification_id": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "sms",
+        "email"
+      ]
+    },
+    "to": {
+      "type": "string"
+    },
+    "delivered_at": {
+      "$ref": "../../defs.json#/$defs/datetime"
+    }
+  }
+}

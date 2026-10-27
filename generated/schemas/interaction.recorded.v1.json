@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InteractionRecorded",
+  "description": "A call ended with a wrap-up reason.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "interaction_ref",
+    "customer_account_ref",
+    "agent_ref",
+    "reason_code",
+    "started_at",
+    "ended_at"
+  ],
+  "properties": {
+    "interaction_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "customer_account_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "agent_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Core agent id of the member of staff."
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verification_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/interaction.recorded/v1.json"
+}

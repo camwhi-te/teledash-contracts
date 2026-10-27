@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingRefundIssue",
+  "description": "Refund (part of) a settled payment.",
+  "x-kind": "command",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "customer_account_ref",
+    "payment_ref",
+    "amount",
+    "reason_code"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "billing_account_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "payment_ref": {
+      "type": "string"
+    },
+    "amount": {
+      "$ref": "../../defs.json#/$defs/money"
+    },
+    "reason_code": {
+      "type": "string"
+    }
+  }
+}

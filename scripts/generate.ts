@@ -70,6 +70,11 @@ writeFileSync(join(GEN_TS, 'registry.ts'), `${reg.join('\n')}\n`)
 // ---- PHP --------------------------------------------------------------------
 
 function phpType(s: Json, required: boolean): { decl: string; nullable: boolean } {
+  // oneOf [X, {type: null}] is "X or null"
+  if (Array.isArray(s.oneOf) && !s.type) {
+    const typed = s.oneOf.flatMap((o: Json) => (Array.isArray(o.type) ? o.type : [o.type])).filter(Boolean)
+    s = { ...s, type: [...new Set(typed)] }
+  }
   let types: string[] = Array.isArray(s.type) ? s.type : [s.type ?? 'mixed']
   const nullable = types.includes('null') || !required
   types = types.filter(t => t !== 'null')

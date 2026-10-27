@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountSearched",
+  "description": "An agent searched for an account. The search term itself stays in the core.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "agent_ref",
+    "term_type",
+    "matched",
+    "customer_account_ref"
+  ],
+  "properties": {
+    "agent_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "term_type": {
+      "type": "string",
+      "enum": [
+        "email",
+        "msisdn",
+        "account_number"
+      ]
+    },
+    "matched": {
+      "type": "boolean"
+    },
+    "customer_account_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

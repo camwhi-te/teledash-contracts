@@ -10,7 +10,24 @@ final class Catalogue
 {
     /** @var array<string, array{kind: string, class: class-string, schema: string}> */
     public const MESSAGES = [
+        'account.access_ended@1' => ['kind' => 'event', 'class' => Messages\AccountAccessEndedV1::class, 'schema' => 'account.access_ended.v1.json'],
+        'account.access_granted@1' => ['kind' => 'event', 'class' => Messages\AccountAccessGrantedV1::class, 'schema' => 'account.access_granted.v1.json'],
+        'account.searched@1' => ['kind' => 'event', 'class' => Messages\AccountSearchedV1::class, 'schema' => 'account.searched.v1.json'],
+        'account.verification_locked@1' => ['kind' => 'event', 'class' => Messages\AccountVerificationLockedV1::class, 'schema' => 'account.verification_locked.v1.json'],
+        'approval.decided@1' => ['kind' => 'event', 'class' => Messages\ApprovalDecidedV1::class, 'schema' => 'approval.decided.v1.json'],
+        'approval.requested@1' => ['kind' => 'event', 'class' => Messages\ApprovalRequestedV1::class, 'schema' => 'approval.requested.v1.json'],
+        'billing.credit_applied@1' => ['kind' => 'event', 'class' => Messages\BillingCreditAppliedV1::class, 'schema' => 'billing.credit_applied.v1.json'],
+        'billing.credit_apply@1' => ['kind' => 'command', 'class' => Messages\BillingCreditApplyV1::class, 'schema' => 'billing.credit_apply.v1.json'],
+        'billing.credit_failed@1' => ['kind' => 'event', 'class' => Messages\BillingCreditFailedV1::class, 'schema' => 'billing.credit_failed.v1.json'],
+        'billing.refund_failed@1' => ['kind' => 'event', 'class' => Messages\BillingRefundFailedV1::class, 'schema' => 'billing.refund_failed.v1.json'],
+        'billing.refund_issue@1' => ['kind' => 'command', 'class' => Messages\BillingRefundIssueV1::class, 'schema' => 'billing.refund_issue.v1.json'],
+        'billing.refund_issued@1' => ['kind' => 'event', 'class' => Messages\BillingRefundIssuedV1::class, 'schema' => 'billing.refund_issued.v1.json'],
         'diagnostic.ping@1' => ['kind' => 'command', 'class' => Messages\DiagnosticPingV1::class, 'schema' => 'diagnostic.ping.v1.json'],
         'diagnostic.ponged@1' => ['kind' => 'event', 'class' => Messages\DiagnosticPongedV1::class, 'schema' => 'diagnostic.ponged.v1.json'],
+        'interaction.recorded@1' => ['kind' => 'event', 'class' => Messages\InteractionRecordedV1::class, 'schema' => 'interaction.recorded.v1.json'],
+        'notification.failed@1' => ['kind' => 'event', 'class' => Messages\NotificationFailedV1::class, 'schema' => 'notification.failed.v1.json'],
+        'notification.send@1' => ['kind' => 'command', 'class' => Messages\NotificationSendV1::class, 'schema' => 'notification.send.v1.json'],
+        'notification.sent@1' => ['kind' => 'event', 'class' => Messages\NotificationSentV1::class, 'schema' => 'notification.sent.v1.json'],
+        'verification.failed@1' => ['kind' => 'event', 'class' => Messages\VerificationFailedV1::class, 'schema' => 'verification.failed.v1.json'],
     ];
 }

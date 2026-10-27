@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotificationSend",
+  "description": "Deliver an SMS or email. SMS land in the phone simulator; email goes to Mailpit.",
+  "x-kind": "command",
+  "type": "object",
+  "required": [
+    "notification_id",
+    "channel",
+    "to",
+    "template",
+    "body"
+  ],
+  "properties": {
+    "notification_id": {
+      "$ref": "../../defs.json#/$defs/uuid",
+      "description": "Chosen by the sender; echoed in notification.sent/failed."
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "sms",
+        "email"
+      ]
+    },
+    "to": {
+      "type": "string",
+      "minLength": 3,
+      "description": "E.164 MSISDN without + for sms, an address for email."
+    },
+    "template": {
+      "type": "string",
+      "description": "e.g. otac, order_update, generic. For grouping and display only."
+    },
+    "subject": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "customer_account_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

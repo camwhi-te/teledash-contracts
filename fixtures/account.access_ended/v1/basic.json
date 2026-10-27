@@ -1,0 +1,19 @@
+{
+  "message_id": "01JB8A07V9K3M4N5P6Q7R8S9T0",
+  "type": "account.access_ended",
+  "version": 1,
+  "occurred_at": "2026-10-27T09:00:00Z",
+  "producer": "core",
+  "correlation_id": "corr_account.access_ended",
+  "causation_id": null,
+  "actor": {
+    "type": "agent",
+    "id": "0193a3f0-6a1e-7c2b-9d4e-1f2a3b4c5d6e"
+  },
+  "payload": {
+    "grant_ref": "0193a3f0-6a1e-7c2b-9d4e-bbbbbbbbbbbb",
+    "customer_account_ref": "0193a3f0-6a1e-7c2b-9d4e-aaaaaaaaaaaa",
+    "agent_ref": "0193a3f0-6a1e-7c2b-9d4e-1f2a3b4c5d6e",
+    "reason": "call_ended"
+  }
+}

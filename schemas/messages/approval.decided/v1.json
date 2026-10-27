@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApprovalDecided",
+  "description": "A pending request was approved, rejected or expired.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "customer_account_ref",
+    "decision",
+    "flagged"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected",
+        "expired"
+      ]
+    },
+    "decided_by_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "comment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "flagged": {
+      "type": "boolean",
+      "description": "Admin decision over the manager limit, or an admin override."
+    }
+  }
+}

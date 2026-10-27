@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountVerificationLocked",
+  "description": "Verification for an account is locked after repeated failures; a possible-fraud flag is raised.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "customer_account_ref",
+    "agent_ref",
+    "locked_until"
+  ],
+  "properties": {
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "agent_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "locked_until": {
+      "$ref": "../../defs.json#/$defs/datetime"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotificationFailed",
+  "description": "A notification could not be delivered.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "notification_id",
+    "channel",
+    "to",
+    "failure"
+  ],
+  "properties": {
+    "notification_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "sms",
+        "email"
+      ]
+    },
+    "to": {
+      "type": "string"
+    },
+    "failure": {
+      "description": "Why a command failed. retryable=false means the orchestrator should compensate rather than retry.",
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/notification.failed/v1.json"
+}

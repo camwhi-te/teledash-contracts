@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingRefundIssued",
+  "description": "A refund was issued against a payment.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "billing_account_ref",
+    "payment_ref",
+    "amount"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "billing_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "payment_ref": {
+      "type": "string"
+    },
+    "amount": {
+      "$ref": "../../defs.json#/$defs/money"
+    },
+    "refund_ref": {
+      "oneOf": [
+        {
+          "$ref": "../../defs.json#/$defs/uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

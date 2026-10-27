@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingCreditFailed",
+  "description": "A credit could not be applied.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "failure"
+  ],
+  "properties": {
+    "approval_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "failure": {
+      "$ref": "../../defs.json#/$defs/failure"
+    }
+  }
+}

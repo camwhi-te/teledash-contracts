@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BillingRefundFailed",
+  "description": "A refund was refused, e.g. more than was paid.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "approval_ref",
+    "failure"
+  ],
+  "properties": {
+    "approval_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "failure": {
+      "description": "Why a command failed. retryable=false means the orchestrator should compensate rather than retry.",
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/billing.refund_failed/v1.json"
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VerificationFailed",
+  "description": "A caller failed a verification check.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "verification_ref",
+    "customer_account_ref",
+    "agent_ref",
+    "step",
+    "attempts",
+    "locked"
+  ],
+  "properties": {
+    "verification_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "customer_account_ref": {
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "agent_ref": {
+      "description": "Core agent id of the member of staff.",
+      "$ref": "../../defs.json#/$defs/uuid"
+    },
+    "step": {
+      "type": "string",
+      "enum": [
+        "otac",
+        "security_question",
+        "second_security_question"
+      ]
+    },
+    "attempts": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "locked": {
+      "type": "boolean",
+      "description": "True when this failure locked verification for the account."
+    }
+  }
+}

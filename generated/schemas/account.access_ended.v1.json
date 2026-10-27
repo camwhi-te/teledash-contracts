@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountAccessEnded",
+  "description": "An agent's access to an account ended.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "grant_ref",
+    "customer_account_ref",
+    "agent_ref",
+    "reason"
+  ],
+  "properties": {
+    "grant_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "customer_account_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "agent_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Core agent id of the member of staff."
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "call_ended",
+        "expired",
+        "idle",
+        "revoked"
+      ]
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/account.access_ended/v1.json"
+}

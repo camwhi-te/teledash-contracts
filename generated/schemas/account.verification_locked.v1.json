@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccountVerificationLocked",
+  "description": "Verification for an account is locked after repeated failures; a possible-fraud flag is raised.",
+  "x-kind": "event",
+  "type": "object",
+  "required": [
+    "customer_account_ref",
+    "agent_ref",
+    "locked_until"
+  ],
+  "properties": {
+    "customer_account_ref": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "agent_ref": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Core agent id of the member of staff."
+    },
+    "locked_until": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$id": "https://teledash.local/schemas/messages/account.verification_locked/v1.json"
+}
